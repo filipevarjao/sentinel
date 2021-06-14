@@ -1,0 +1,6 @@
+-sname sentinel
+
+-setcookie sentinel
+
++K true
++A30
