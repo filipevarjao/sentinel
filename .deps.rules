@@ -1,0 +1,3 @@
+ebin/sentinel_app.beam: src/sentinel_app.erl
+ebin/sentinel_sup.beam: src/sentinel_sup.erl
+ebin/sentinel_server.beam: src/sentinel_server.erl
