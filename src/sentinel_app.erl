@@ -9,11 +9,11 @@
 
 -export([start/2, stop/1]).
 
-start(_StartType, _StartArgs) ->
-    LagerRet = lager:start(),
-    io:format("### lager start ret:~p~n", [LagerRet]),
-    sentinel_sup:start_link().
 
+-spec start(application:start_type(), any()) -> kz_types:startapp_ret().
+start(_StartType, _StartArgs) -> sentinel_sup:start_link().
+
+-spec stop(any()) -> 'ok'.
 stop(_State) ->
     'ok'.
 
