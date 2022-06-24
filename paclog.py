@@ -23,23 +23,22 @@ def start_paclog(Vector_failure, sock):
   nn = NearestNeighbors()
   nn.fit(Vector_failure)
 
-  logfile = open("../kazoo5/_rel/kazoo/log/console.log","r")
+  logfile = open("../../_rel/kazoo/log/console.log","r")
   loglines = follow(logfile)
   # min_distance = 0.3
-  smallest_distance = 1.0
   for line in loglines:
     Log = converted_to_numeric([line])
     distances = nn.kneighbors(Log)[0]
 
-    if distances[0][0] <= smallest_distance:
-      smallest_distance = distances[0][0]
+    if distances[0][0] <= 0.5:
+      # smallest_distance = distances[0][0]
       msg = "%.2f" % distances[0][0]
       msg = msg + line
-
+    else:
+      msg = "%.2f" % distances[0][0]
     # lif distances[0][0] <= min_distance:
       # min_distance = distances[0][0]
-
-    msg = "%.2f" % distances[0][0]
+    print(msg)
     sock.sendto(bytes(msg, "utf-8"), ('127.0.0.1', 8789))
 
 def connect_to_kazoo_node():
@@ -48,7 +47,7 @@ def connect_to_kazoo_node():
   # sock.sendto(bytes("Hello, World!", "utf-8"), ('127.0.0.1', 8789))
 
 def load_datasets():
-  failure = open("../kazoo5/_rel/kazoo/log/failure.log", "r").readlines()
+  failure = open("../../_rel/kazoo/log/error.log", "r").readlines()
   vectorizer = HashingVectorizer(n_features=2**20)
   V_failure = vectorizer.transform(failure)
 
