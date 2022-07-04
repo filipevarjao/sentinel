@@ -34,11 +34,12 @@ def start_paclog(Vector_failure, sock):
       # smallest_distance = distances[0][0]
       msg = "%.2f" % distances[0][0]
       msg = msg + line
+      print(msg)
     else:
       msg = "%.2f" % distances[0][0]
     # lif distances[0][0] <= min_distance:
       # min_distance = distances[0][0]
-    print(msg)
+
     sock.sendto(bytes(msg, "utf-8"), ('127.0.0.1', 8789))
 
 def connect_to_kazoo_node():
